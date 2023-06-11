@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+/*
+    Time Complexity: O(N * M) 
+    Space Complexity: O(N + M) 
+
+    Where N & M are dimensions of the given matrix.
+*/
+
+void setZeros(vector<vector<int>> &matrix)
+{
+	// Storing dimensions of matrix in n and m.
+	int n = matrix.size();
+	int m = matrix[0].size();
+	
+	// Declaring two boolean arrays colZero and rowZero.
+	vector<bool> colZero(m), rowZero(n);
+	
+	// Traversing the original matrix and filling values for rowZero and calZero.
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < m; j++) {
+			if(matrix[i][j] == 0) {
+				colZero[j] = rowZero[i] = true;
+			}
+		}
+	}
+	
+	// Traversing the original matrix and changing values of matrix according to rowZero and colZero.
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < m; j++) {
+			if(rowZero[i] || colZero[j]) {
+				matrix[i][j] = 0;
+			}
+		}
+	}
+}
